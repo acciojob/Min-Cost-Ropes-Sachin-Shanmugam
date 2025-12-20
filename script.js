@@ -1,4 +1,4 @@
-function minCost(arr) {
+function mincost(arr) {
   if (!Array.isArray(arr) || arr.length <= 1) return 0;
 
   let totalCost = 0;
@@ -17,5 +17,3 @@ function minCost(arr) {
 
   return totalCost;
 }
-
-module.exports = { minCost };
