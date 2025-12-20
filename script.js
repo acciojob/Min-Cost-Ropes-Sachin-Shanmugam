@@ -1,21 +1,22 @@
-function mincost(arr)
-{ 
-const heap = require('heap');
-const minHeap = new heap.MinHeap();
-	for (let length of arr) {
-		minHeap.push(length);
-	}
-let totalcost = 0;
-  while (minHeap.size() > 1) {
-  	let first = minHeap.pop();
-	  let second = minHeap.pop();
+function mincost(arr) {
+  if (arr.length <= 1) return 0;
 
-	let cost = first + second ;
-	  let totalcost += cost;
+  let cost = 0;
 
-	  minHeap.push(cost);
+  // Keep combining until one rope remains
+  while (arr.length > 1) {
+    // Sort to get two smallest ropes
+    arr.sort((a, b) => a - b);
+
+    const first = arr.shift();
+    const second = arr.shift();
+
+    const sum = first + second;
+    cost += sum;
+
+    // Push the combined rope back
+    arr.push(sum);
   }
-	return totalcost;
-}
 
-module.exports=mincost;
+  return cost;
+}
