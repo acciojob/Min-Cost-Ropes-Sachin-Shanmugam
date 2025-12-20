@@ -1,18 +1,20 @@
 function mincost(arr) {
   if (!Array.isArray(arr) || arr.length <= 1) return 0;
 
+  // Create a copy so original array is not mutated
+  let heap = [...arr];
   let totalCost = 0;
 
-  while (arr.length > 1) {
-    arr.sort((a, b) => a - b);
+  while (heap.length > 1) {
+    heap.sort((a, b) => a - b);
 
-    const first = arr.shift();
-    const second = arr.shift();
+    const first = heap.shift();
+    const second = heap.shift();
 
     const sum = first + second;
     totalCost += sum;
 
-    arr.push(sum);
+    heap.push(sum);
   }
 
   return totalCost;
